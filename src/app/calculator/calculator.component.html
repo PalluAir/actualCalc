@@ -1,0 +1,53 @@
+<div class="wrapper">
+    <header>CURRENCY CONVERTER</header>
+    <form action="#currencyform" (ngSubmit)="calculate(currencyform)" #currencyform="ngForm">
+      <div class="amount">
+        <p>Enter Amount</p>
+        <input type="text" minlength="4" value="amount" name="amount" ngModel required #amount=ngModel>
+        <small class="form-text text-muted" *ngIf="amount.touched&&!amount.valid ; then showMsg">Amount should be minimum 1000</small>
+        <small class="form-text text-muted"><ng-template #showMsg>Enter Amount to Calculate</ng-template></small>
+      </div>
+      <div class="drop-list">
+      <div class="from">
+        <p>From</p>
+        <div class="select-box"> 
+            <!-- <img src="https://countryflagsapi.com/svg/in" alt="India flag"/><br> <br>     -->
+          <select value="from" name="from" ngModel required #name=ngModel>
+            <option value="INR"><img src="https://countryflagsapi.com/svg/in" alt="India flag"/>INR</option>
+            <option value="USD">USD</option>
+            <option value="EUR">EUR</option>
+            <option value="GBP">GBP</option>
+            <option value="JPY">JPY</option>
+          </select>
+        </div>
+      </div><br>
+      <div class="icons"><i class="fas fa-exchange-alt"></i></div>
+      <div class="to">
+        <p>To</p>
+        <div class="select-box">
+            <img src="https://countryflagsapi.com/svg/us" alt="The United States Of America flag"/><br>           
+          <select value="to" name="to" ngModel required #name=ngModel>
+            <option value="USD">USD</option>
+            <option value="INR">INR</option>
+            <option value="EUR">EUR</option>
+            <option value="GBP">GBP</option>
+            <option value="JPY">JPY</option>
+          </select>
+        </div>
+      </div>
+      </div><br>
+      <!-- <div class="exchange-rate">1 INR = 0.013 USD</div><br> -->
+      <div class="exchange-rate">
+        <p>Receipient Gets</p>
+        <p>{{totalAmount}}</p>
+      </div><br>
+      <div class="container">
+        <button class="btn btn-primary" type="submit" [disabled]="!currencyform.valid">GENERATE RATE</button>
+      <button class="btn btn-secondary" type="button" (click)="transaction();">SEND MONEY</button> 
+      </div>
+
+
+    </form>
+
+  </div>
+
